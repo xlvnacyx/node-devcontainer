@@ -72,14 +72,14 @@ jobs:
       with:
         username: ${{ secrets.DOCKERHUB_USERNAME }}
         password: ${{ secrets.DOCKERHUB_TOKEN }}
-        repository: ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.IMAGE_NAME }}
-        readme-filepath: ./README.md
+        repository: ${{ env.IMAGE_NAME }}
+        readme-filepath: ./.github/README.md
 
     - name: Generate security report
       if: github.event_name != 'pull_request'
       uses: lvnacy-actions/scout-action@f8c776824083494ab0d56b8105ba2ca85c86e4de
       with:
         command: cves
-        image: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
+        image: ${{ env.IMAGE_NAME }}:latest
         only-severities: critical,high
         exit-code: true
