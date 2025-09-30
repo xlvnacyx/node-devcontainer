@@ -8,6 +8,24 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+- Dual remote repository system for private development and public distribution
+- PR-based sync workflow with timestamped branches (sync/public-YYYYMMDD-HHMMSS)
+- GitHub Actions workflow for automated Docker Hub publishing
+- Multi-platform container builds (AMD64 + ARM64)
+- Docker Scout security scanning with vulnerability reporting
+- Weekly scheduled rebuilds for security updates
+- Comprehensive sync automation with .warp/sync-public.sh
+- Interactive repository setup with .warp/setup-remotes.sh
+- Conversation archive system in .warp directory
+- Context preservation for AI-assisted development sessions
+
+### Changed
+- GitHub Actions configured for lvnacy/node-devcontainer Docker Hub repository
+- .github directory structure maintained in both private and public repositories
+- Workflows directory (.github/workflows) exclusively for public repository CI/CD
+- Sync system creates PR-ready branches instead of direct main branch pushes
+
+### Infrastructure
 - Initial Node.js Dev Container implementation
 - Multi-stage Dockerfile with builder and runtime stages
 - Volta integration for Node.js version management

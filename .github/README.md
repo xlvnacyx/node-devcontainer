@@ -4,9 +4,10 @@ A production-ready Dockerfile optimized for VS Code's Dev Container extension, p
 
 ## Features
 
-- **🔧 Volta Integration**: Seamless Node.js version management without conflicts
+- **🔧 Volta Integration**: Seamless Node.js version management
 - **💻 VS Code Optimized**: Pre-configured for Dev Container extension
 - **🔒 Security First**: Non-root execution with hardened runtime environment
+    - No `apt`, `dpkg`, `curl`, etc
 - **📦 TypeScript Ready**: Global TypeScript installation for immediate use
 - **⚡ Multi-Stage Build**: Optimized for both development and production
 
@@ -17,18 +18,24 @@ A production-ready Dockerfile optimized for VS Code's Dev Container extension, p
 1. **Prerequisites**: Install [VS Code](https://code.visualstudio.com/) and the [Dev Containers extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers)
 
 2. **Open in Container**:
-   - Clone this repository
-   - Open in VS Code
+   - Open VS Code
+   - Configure `.devcontainer/devcontainer.json` (see below)
    - Command Palette → `Dev Containers: Reopen in Container`
 
 3. **Start Developing**: Your development environment is ready with Node.js, npm, and TypeScript!
 
 ### Manual Docker Usage
 
+1. Clone this repo and
+
 ```bash
 # Build the container
 docker build -t node-devcontainer .
+```
 
+2. Navigate to your project workspace and
+
+```
 # Run interactively
 docker run -it --rm -v "$(pwd)":/workspace node-devcontainer
 
@@ -45,7 +52,7 @@ Create `.devcontainer/devcontainer.json` in your project:
 ```json
 {
     "name": "Node.js Dev Container",
-    "build": { "dockerfile": "Dockerfile" },
+    "image": "lvnacy/node-devcontainer:latest",
     "customizations": {
         "vscode": {
             "extensions": [
